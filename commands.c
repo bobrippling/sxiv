@@ -20,6 +20,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <errno.h>
 
 #include "commands.h"
 #include "image.h"
@@ -261,6 +262,25 @@ bool cg_change_gamma(arg_t d)
 	} else {
 		return false;
 	}
+}
+
+bool cg_save_filelist(arg_t a)
+{
+	const char *fname = "sxiv_imglist";
+
+	FILE *f = fopen(fname, "w");
+	if(!f){
+		fprintf(stderr, "open %s: %s\n", fname, strerror(errno));
+		return false;
+	}
+
+	for(int i = 0; i < filecnt; i++)
+		fprintf(f, "%s\n", files[i].path);
+
+	fclose(f);
+
+	fprintf(stderr, "sxiv: written file list to %s\n", fname);
+	return true;
 }
 
 bool ci_navigate(arg_t n)
