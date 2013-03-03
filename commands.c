@@ -23,6 +23,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <errno.h>
 
 #include "commands.h"
 #include "image.h"
@@ -548,5 +549,23 @@ bool it_shell_cmd(arg_t a)
 		if (tns.sel >= tns.cnt)
 			tns.sel = tns.cnt - 1;
 	}
+	return true;
+}
+
+bool it_save_image_list(arg_t a) {
+	const char *fname = "sxiv_imglist";
+
+	FILE *f = fopen(fname, "w");
+	if(!f){
+		fprintf(stderr, "open %s: %s\n", fname, strerror(errno));
+		return false;
+	}
+
+	for(int i = 0; i < filecnt; i++)
+		fprintf(f, "%s\n", files[i].path);
+
+	fclose(f);
+
+	fprintf(stderr, "sxiv: written file list to %s\n", fname);
 	return true;
 }

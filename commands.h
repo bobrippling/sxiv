@@ -70,5 +70,6 @@ bool i_toggle_antialias(arg_t);
 bool it_toggle_alpha(arg_t);
 bool it_open_with(arg_t);
 bool it_shell_cmd(arg_t);
+bool it_save_image_list(arg_t);
 
 #endif /* COMMANDS_H */
