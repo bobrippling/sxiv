@@ -51,6 +51,7 @@ extern fileinfo_t *files;
 extern int filecnt, fileidx;
 extern int markcnt;
 extern int alternate;
+extern degree_t cur_rotation;
 
 extern int prefix;
 
@@ -446,7 +447,8 @@ bool i_rotate(arg_t a)
 	degree_t degree = (degree_t) a;
 
 	if (mode == MODE_IMAGE) {
-		img_rotate(&img, degree);
+		cur_rotation = degree;
+		img.dirty = true;
 		return true;
 	}	else {
 		return false;
