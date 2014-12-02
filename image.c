@@ -36,7 +36,6 @@ enum { MIN_GIF_DELAY = 25 };
 #include "util.h"
 #include "config.h"
 
-extern degree_t cur_rotation;
 float zoom_min;
 float zoom_max;
 
@@ -440,8 +439,6 @@ void img_render(img_t *img)
 
 	if (!img->dirty)
 		return;
-
-	img_rotate(img, cur_rotation);
 
 	/* calculate source and destination offsets */
 	if (img->x < 0) {

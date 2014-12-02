@@ -4,8 +4,8 @@ PREFIX    = /usr/local
 MANPREFIX = $(PREFIX)/share/man
 
 CC      = gcc
-CFLAGS  = -std=c99 -Wall -pedantic -I$(PREFIX)/include -DHAVE_GIFLIB -g
-LDFLAGS = -L$(PREFIX)/lib -g
+CFLAGS  = -std=c99 -Wall -pedantic -O2 -I$(PREFIX)/include -DHAVE_GIFLIB
+LDFLAGS = -L$(PREFIX)/lib
 LIBS    = -lX11 -lImlib2 -lgif
 
 SRC = commands.c exif.c image.c main.c options.c thumbs.c util.c window.c

@@ -62,7 +62,6 @@ appmode_t mode;
 img_t img;
 tns_t tns;
 win_t win;
-degree_t cur_rotation;
 
 fileinfo_t *files;
 int filecnt, fileidx;
